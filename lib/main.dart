@@ -8,7 +8,14 @@ import 'package:savestreak/screens/navigator_screens/streak_screen.dart';
 import 'package:savestreak/providers/budget_provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => BudgetProvider()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

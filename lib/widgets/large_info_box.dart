@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class InfoBox extends StatelessWidget {
+class LargeInfoBox extends StatelessWidget {
   final String title;
   final Widget child;
   final VoidCallback onTap;
   final double width;
   final double height;
 
-  InfoBox({
+  LargeInfoBox({
     required Key key,
     required this.title,
     required this.child,
     required this.onTap,
-    this.width = 178.0,
-    this.height = 178.0,
+    this.width = double.infinity,
+    this.height = 200.0,
   }) : super(key: key);
 
   @override

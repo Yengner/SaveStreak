@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:reorderable_grid_view/reorderable_grid_view.dart';
 import 'package:intl/intl.dart';
 import '../../widgets/budget_bar.dart';
 import '../../providers/budget_provider.dart';
@@ -8,6 +7,9 @@ import '../../widgets/info_box.dart';
 import '../../widgets/simple_line_chart.dart';
 import '../budget_details_screen.dart';
 import '../edit_budget_screen.dart';
+import '../categorized_spend_screen.dart';
+import '../../widgets/categorized_box_chart.dart';
+import '../../widgets/large_info_box.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -38,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         onTap: () {},
+        height: 200.0,
       ),
       InfoBox(
         key: ValueKey('edit_financial_info'),
@@ -62,10 +65,15 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       InfoBox(
-        key: ValueKey('todays_spend'),
-        title: 'Todays Spend ',
-        child: Center(child: Text('Todays Spend')),
-        onTap: () {},
+        key: ValueKey('categorized_spend'),
+        title: 'Categorized Spend',
+        child: CategorizedBoxChart(showNumbers: false), // Hide numbers on home screen
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CategorizedSpendScreen()),
+          );
+        },
       ),
     ];
   }
@@ -96,25 +104,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     'You have saved \$${budgetProvider.savedAmount} as of $currentDate',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
+                  
+                  
+                  SizedBox(height: 20,),
+                  LargeInfoBox(
+                    key: ValueKey('categorized_spend'),
+                    title: 'Categorized Spend',
+                    child: CategorizedBoxChart(showNumbers: false), // Hide numbers on home screen
+                    onTap: () {
+                    Navigator.push(
+                        context,
+                    MaterialPageRoute(builder: (context) => CategorizedSpendScreen()),
+                      );
+                    },
+                  ),       
+
                   SizedBox(height: 20),
-                  ReorderableGridView.count(
+                  
+                  GridView.count(
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: gridItems,
-                    onReorder: (oldIndex, newIndex) {
-                      setState(() {
-                        if (newIndex > oldIndex) {
-                          newIndex -= 1;
-                        }
-                        final item = gridItems.removeAt(oldIndex);
-                        gridItems.insert(newIndex, item);
-                      });
-                    },
                   ),
-                ],
+                  SizedBox(height: 13),
+
+                ],              
               ),
             ),
           );
