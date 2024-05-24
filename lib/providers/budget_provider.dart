@@ -11,11 +11,19 @@ class BudgetProvider with ChangeNotifier {
   double _budget = 500.0;
 
   final Map<String, double> _categories = {
-    'Food': 275.0,
-    'Transport': 100.0,
-    'Entertainment': 150.0,
-    'Shopping': 50.0,
-    'other': 50,
+    '🚙': 100.0,
+    '🍱': 275.0,
+    '🍿': 150.0,
+    '🛍️': 50.0,
+    '🤷‍♂️': 50,
+  };
+
+  final Map<String, String> _emojiToWord = {
+    'Transportation': '🚙',
+    'Food':'🍱',
+    'Entertaiment':'🍿',
+    'Shopping':'🛍️',
+    'Other':'🤷‍♂️',
   };
 
   double get totalBudget => _totalBudget;
@@ -27,6 +35,7 @@ class BudgetProvider with ChangeNotifier {
   double get income => _income;
   double get budget => _budget;
   Map<String, double> get categories => _categories;
+  Map<String, String> get emojiToWord => _emojiToWord;
 
   void updateSpend(double amount) {
     _currentSpend += amount;

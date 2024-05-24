@@ -10,6 +10,7 @@ class CategorizedBoxChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final budgetProvider = Provider.of<BudgetProvider>(context);
     final double totalBudget = budgetProvider.totalBudget;
 
@@ -48,7 +49,7 @@ class CategorizedBoxChart extends StatelessWidget {
           ),
           leftTitles: AxisTitles(
             sideTitles: SideTitles(
-              showTitles: showNumbers,
+              showTitles: false,
               getTitlesWidget: (value, meta) {
                 if (showNumbers) {
                   return Padding(
@@ -74,7 +75,7 @@ class CategorizedBoxChart extends StatelessWidget {
         
         borderData: FlBorderData(show: false),
         gridData: FlGridData(
-          show: showNumbers,
+          show: showNumbers, // show graph
           getDrawingHorizontalLine: (value) {
             if (value == totalBudget) {
               return const FlLine(  // Create a dotted line
@@ -104,14 +105,14 @@ class CategorizedBoxChart extends StatelessWidget {
                 TextStyle(
                   color: isAboveBudget ? Color.fromARGB(255, 208, 0, 0) : Color.fromARGB(255, 2, 160, 7),
                   fontWeight: FontWeight.bold,
-                  fontSize: 12,
+                  fontSize: 15,
                 ),
                 children: <TextSpan>[
                   TextSpan(
                     text: category,
                     style: const TextStyle(
                       color: Color.fromARGB(255, 0, 0, 0),
-                      fontSize: 10,
+                      fontSize: 20,
                     ),
                   ),
                 ],

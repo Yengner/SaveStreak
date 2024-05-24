@@ -65,14 +65,10 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       InfoBox(
-        key: ValueKey('categorized_spend'),
-        title: 'Categorized Spend',
-        child: CategorizedBoxChart(showNumbers: false), // Hide numbers on home screen
+        key: ValueKey('blank'),
+        title: 'Blank',
+        child: Text('Blank'), // Hide numbers on home screen
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CategorizedSpendScreen()),
-          );
         },
       ),
     ];

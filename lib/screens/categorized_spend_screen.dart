@@ -20,7 +20,7 @@ class CategorizedSpendScreen extends StatelessWidget {
 
                 SizedBox(height: 10),
                 Expanded(
-                  child: CategorizedBoxChart(showNumbers: false), // Show numbers on categorized spend screen
+                  child: CategorizedBoxChart(showNumbers: true), // Show numbers on categorized spend screen
                 ),
                 SizedBox(height: 20),
                 Expanded(
@@ -28,9 +28,10 @@ class CategorizedSpendScreen extends StatelessWidget {
                     itemCount: budgetProvider.categories.length,
                     itemBuilder: (context, index) {
                       String category = budgetProvider.categories.keys.elementAt(index);
+                      String word_Emoji = budgetProvider.emojiToWord.keys.elementAt(index);
                       double spend = budgetProvider.categories[category]!;
                       return ListTile(
-                        title: Text(category),
+                        title: Text(word_Emoji),
                         trailing: Text('\$${spend.toStringAsFixed(2)}'),
                       );
                     },
